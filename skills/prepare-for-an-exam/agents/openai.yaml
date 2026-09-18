@@ -1,0 +1,10 @@
+interface:
+  display_name: "Prepare for an exam"
+  short_description: "Plan exam practice using evidence of understanding."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "kuliko"
+      description: "Read study resources and quiz evidence; save targeted practice."
+      transport: "streamable_http"
+      url: "https://mcp.kuliko.ai/mcp"
