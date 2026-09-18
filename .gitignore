@@ -1,0 +1,15 @@
+# Local connection settings and credentials
+.app.json
+.env
+.env.*
+!.env.example
+
+# Local development and exports
+.codex/
+.claude/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+skill-test-bundles/
+*.zip

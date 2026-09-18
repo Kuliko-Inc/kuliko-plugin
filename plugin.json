@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "kuliko",
+  "version": "0.1.0",
+  "description": "Study course material, explain concepts, prepare for exams, and improve learning resources with Kuliko.",
+  "author": {
+    "name": "Kuliko"
+  },
+  "homepage": "https://kuliko.ai",
+  "repository": "https://github.com/Kuliko-Inc/kuliko-plugin"
+}

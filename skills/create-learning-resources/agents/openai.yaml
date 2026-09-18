@@ -1,0 +1,10 @@
+interface:
+  display_name: "Create learning resources"
+  short_description: "Create and save reusable resources for studying."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "kuliko"
+      description: "Read course material and save learning resources in Kuliko."
+      transport: "streamable_http"
+      url: "https://mcp.kuliko.ai/mcp"

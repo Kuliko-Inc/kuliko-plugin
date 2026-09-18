@@ -1,0 +1,28 @@
+{
+  "name": "kuliko",
+  "version": "0.1.0",
+  "description": "Study course material, explain concepts, prepare for exams, and improve learning resources with Kuliko.",
+  "author": {
+    "name": "Kuliko"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Kuliko",
+    "shortDescription": "Turn course material into active learning.",
+    "longDescription": "Use readiness, quiz evidence, and your explanations to guide study and exam practice, reusing and improving your Kuliko learning resources.",
+    "developerName": "Kuliko",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Help me study my lecture notes.",
+      "Let me explain this concept and check my understanding.",
+      "Help me prepare for my exam using my results."
+    ]
+  },
+  "mcpServers": "./.mcp.json",
+  "homepage": "https://kuliko.ai",
+  "repository": "https://github.com/Kuliko-Inc/kuliko-plugin"
+}
