@@ -24,5 +24,6 @@
   },
   "mcpServers": "./.mcp.json",
   "homepage": "https://kuliko.ai",
-  "repository": "https://github.com/Kuliko-Inc/kuliko-plugin"
+  "repository": "https://github.com/Kuliko-Inc/kuliko-plugin",
+  "license": "MIT"
 }

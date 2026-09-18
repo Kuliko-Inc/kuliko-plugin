@@ -79,3 +79,9 @@ tool usage. Resource generation and readiness calculation run in Kuliko's servic
 
 See [Kuliko](https://kuliko.ai) for the product and
 [repository issues](https://github.com/Kuliko-Inc/kuliko-plugin/issues) for plugin feedback.
+
+## License
+
+The files in this repository are licensed under the [MIT License](LICENSE).
+Use of Kuliko's hosted service is governed by its separate terms and account
+requirements.
