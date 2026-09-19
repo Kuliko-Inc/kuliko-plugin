@@ -1,6 +1,6 @@
 ---
 name: study-from-course-material
-description: Guide a study session from lecture notes, PDFs, or course documents using Kuliko learning resources and evidence of the learner's understanding. Reuse, create, and improve resources as the session progresses. Use for general course study; use the exam-preparation workflow for a deadline or exam-readiness plan, and teach-back for an explicit request to explain a concept.
+description: Help learners study lecture notes, PDFs, or saved course documents using Kuliko resources and practice results. Use for general study and for checking a confusing concept against quiz results and original material, including correcting an existing flashcard or note without duplicating it. Reuse and improve resources as gaps emerge; use exam preparation for readiness or deadlines and teach-back when the learner wants to explain first.
 ---
 
 # Study from course material

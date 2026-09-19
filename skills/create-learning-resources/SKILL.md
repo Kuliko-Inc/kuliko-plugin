@@ -1,6 +1,6 @@
 ---
 name: create-learning-resources
-description: Create or save study flashcards, Cornell notes, summaries, or interactive HTML learning artifacts with Kuliko. Use when the learner requests a particular reusable learning resource from course material or content in the conversation. Distinguish generating from a stored source from saving already-authored content; not for generic document formatting or app development.
+description: Create study flashcards, Cornell notes, summaries, or interactive HTML learning artifacts from course material or text in the conversation, including a single flashcard kept only in chat with no upload or save. Use for drafting learning resources in chat, generating from a stored Kuliko source, or saving already-authored content to Kuliko; not for generic document formatting or app development.
 ---
 
 # Create learning resources
