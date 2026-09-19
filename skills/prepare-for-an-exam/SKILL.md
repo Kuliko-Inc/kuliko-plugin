@@ -1,6 +1,6 @@
 ---
 name: prepare-for-an-exam
-description: Prepare for an upcoming exam with a course-scoped readiness assessment, a prioritized practice plan, and adaptive sessions centered on Kuliko learning resources. Use when the learner asks whether they are ready, what to study before a test, or for an exam-preparation plan. Reuse quiz evidence and existing resources, then create or update resources for remaining gaps.
+description: Report Kuliko readiness for a saved document or course and choose what to study next, including read-only score requests. Use when the learner asks for a readiness score, whether they are ready for an exam, what to study before a test, or an exam-preparation plan. Ground priorities and practice in Kuliko's scoped scores, quiz evidence, and existing resources; create or update resources only within the requested scope.
 ---
 
 # Prepare for an exam
@@ -9,12 +9,22 @@ Build an actionable preparation session around the learner's exam scope and
 Kuliko resources. Explicit preferences take precedence. Produce both a useful
 plan and the next practice action; do not stop at a generic timetable.
 
+For a short session, gather enough scoped evidence to choose the next activity,
+then start it. Inspect the resources needed for that decision rather than taking
+a full library inventory. Retain the readiness and quiz-history checks below;
+reduce optional resource browsing, not the evidence needed for the assessment.
+Keep the opening response focused on the reported
+readiness, the main practice gap, and one question or activity.
+
 ## Establish the target and available time
 
 Reuse the exam subject, date, format, covered topics, and available study time
 from the conversation. Ask only for missing details that change the plan. Do not
 invent syllabus coverage, topic weights, a passing threshold, or an exam date.
 If no date is known, make a topic-based plan with that limitation.
+When the learner supplies an assessed-topic list, keep the practice plan and
+coverage table within it. Do not add adjacent topics as presumed exam gaps;
+ask about them only if their inclusion would change the requested plan.
 
 Discover other available MCP connectors/plugins when they fill a concrete need:
 retrieve the named syllabus or lecture material from a document/LMS connector,
@@ -39,6 +49,9 @@ Read the selected subjects/documents' `readiness` values from `list_subjects`,
 report the service value and its subject/source scope. Do not average scores
 into a fabricated exam-readiness percentage or treat one source as full syllabus
 coverage. Numeric zero is a valid score; null/missing means unavailable.
+Do not dismiss a returned zero as a placeholder because supporting fields look
+similar to another record or seem stronger. Report the requested source's score
+even when its subject has only that source; the subject score cannot replace it.
 
 Use returned `recall_forecast`, `quiz_confidence`, `mastery_level`,
 `reviewed_flashcards_count`, `flashcards_count`, and `completed_quizzes_count`
@@ -51,9 +64,16 @@ Use `list_quiz_attempts` to identify recent relevant completed attempts and
 `get_quiz_results` for the available completed reports. Match attempts to the
 exam's subjects/sources by matching their `quiz_id` to scoped
 `list_learning_resources` quiz results; attempt rows may omit course IDs.
+Confirm the history with `list_quiz_attempts` even when summary counts are zero
+or the learner recalls no prior quiz. Counts and a saved quiz listing do not
+replace the attempt history. If the history is empty, skip `get_quiz_results`
+and move to a diagnostic question using the available resources.
 Do not substitute unrelated quiz scores. Use
 `get_quiz_status` for an unfinished quiz and offer to resume it with `take_quiz`.
 An unfinished quiz or missing report is unassessed evidence, not a failure.
+If a saved resource and a quiz answer share an error, identify both without
+claiming the resource caused the learner's mistake. Their current understanding
+still needs practice evidence; a faulty resource does not erase a demonstrated gap.
 
 Check `get_flashcard_due_counts` and relevant due cards for recall workload.
 Due counts are not a knowledge score, and zero due cards does not mean exam
@@ -91,6 +111,14 @@ an exam blueprint or arbitrary count/topic parameters. Use host-authored
 `save_flashcards`, `save_notes`, or `save_summaries` for targeted remediation;
 manual quiz saves are not exposed. Use `save_html_artifact` for a focused,
 self-contained interactive explanation, not the generation tool.
+
+If a practice widget is unavailable after tool discovery, use an existing resource
+as a cue and ask the practice question in chat. Do not keep searching for the
+same missing capability or create a new collection merely to replace its UI.
+When the learner asks to choose the next practice, begin from the existing
+material; create additional resources when requested or when practice reveals a
+gap that needs them. Keep session dates and proposed plans in the conversation
+unless the learner requests persistence.
 
 For misleading or incomplete existing resources, read their current content and
 use `update_flashcard`, `update_note`, or `update_summary` with returned IDs.

@@ -9,6 +9,21 @@ Let the learner do the explaining, with Kuliko resources providing the starting
 point and retaining useful improvements. Explicit learner preferences take
 precedence over this workflow.
 
+## Let the learner explain first
+
+When the learner has chosen a concept and asks to explain it first, open with
+one neutral invitation, such as "How would you explain it in your own words?",
+and wait. Defer evidence gathering and feedback until they answer; do not
+preview the definition, quiz mistakes, or stored resource answers.
+
+Distinguish quoted course material from the learner's own explanation. Supplied
+source text is a reference, not evidence that they understand it or have improved.
+Once they give their explanation, use the Kuliko evidence below to guide feedback
+and resource reuse or repair. If their request already includes their explanation
+and asks for feedback or a correction, proceed directly to that work. Keep past
+quiz results separate from current understanding, and do not infer what caused a
+mistake merely because a stored resource contains the same error.
+
 ## Pick the right concept and challenge
 
 Resolve the chosen subject/source with `list_subjects` and `list_documents`, then
