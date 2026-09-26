@@ -71,6 +71,7 @@ creating calendar events.
 - `plugin.json` and `mcp.json`: portable plugin identity and MCP configuration.
 - `.claude-plugin/plugin.json` and `.mcp.json`: Claude compatibility configuration.
 - `.codex-plugin/plugin.json`: OpenAI compatibility metadata.
+- `assets/icon.svg`: Kuliko icon used by the Claude plugin listing.
 - `skills/*/agents/openai.yaml`: OpenAI skill metadata and MCP dependencies.
 
 Keep plugin identities, versions, and endpoint declarations consistent when
@@ -79,6 +80,8 @@ tool usage. Resource generation and readiness calculation run in Kuliko's servic
 
 See [Kuliko](https://kuliko.ai) for the product and
 [repository issues](https://github.com/Kuliko-Inc/kuliko-plugin/issues) for plugin feedback.
+See Kuliko's [privacy policy](https://kuliko.ai/privacy-policy) for information
+about how the hosted service handles your data.
 
 ## License
 

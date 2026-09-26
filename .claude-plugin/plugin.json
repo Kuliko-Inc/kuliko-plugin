@@ -6,6 +6,8 @@
     "name": "Kuliko"
   },
   "homepage": "https://kuliko.ai",
+  "icon": "./assets/icon.svg",
+  "privacyPolicyUrl": "https://kuliko.ai/privacy-policy",
   "repository": "https://github.com/Kuliko-Inc/kuliko-plugin",
   "license": "MIT"
 }
