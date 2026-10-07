@@ -8,7 +8,7 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Kuliko",
-    "shortDescription": "Turn course material into active learning.",
+    "shortDescription": "Study your course material",
     "longDescription": "Use readiness, quiz evidence, and your explanations to guide study and exam practice, reusing and improving your Kuliko learning resources.",
     "developerName": "Kuliko",
     "category": "Productivity",
