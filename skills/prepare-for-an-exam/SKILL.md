@@ -203,3 +203,12 @@ resources with `list_learning_resources` when needed and use returned links.
 An immediate created-resource result needs no polling; a queued consume link
 alone does not prove completion. If completion cannot be verified, report it
 as pending or unverified rather than claiming a save.
+
+## Optional ChatGPT study surfaces
+
+When available, use `open_kuliko_library` to browse and `open_study_session` to
+keep study material beside the conversation. Reuse an already-open view and
+its selected resource context rather than opening duplicate views. Selection
+alone does not authorize writes or practice. On other hosts, continue using
+the standard Kuliko tools and existing widgets; ChatGPT-specific navigation,
+mentions, settings, and file handlers are not required. Use live tool schemas.

@@ -1,12 +1,34 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kuliko",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Study course material, explain concepts, prepare for exams, and improve learning resources with Kuliko.",
   "author": {
     "name": "Kuliko"
   },
   "homepage": "https://kuliko.ai",
   "repository": "https://github.com/Kuliko-Inc/kuliko-plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Kuliko",
+        "shortDescription": "Your material. Active learning",
+        "longDescription": "Use readiness, quiz evidence, and your explanations to guide study and exam practice, reusing and improving your Kuliko learning resources.",
+        "developerName": "Kuliko",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write",
+          "Interactive"
+        ],
+        "defaultPrompt": [
+          "Help me study my lecture notes.",
+          "Let me explain this concept and check my understanding.",
+          "Help me prepare for my exam using my results."
+        ]
+      },
+      "onboardingSkill": "./skills/kuliko-setup/SKILL.md"
+    }
+  }
 }

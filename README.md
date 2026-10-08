@@ -1,7 +1,7 @@
 # Kuliko
 
 Study with your course material and keep your learning resources in Kuliko.
-This plugin brings four shared skills and Kuliko's remote MCP connection to
+This plugin brings four study skills, a setup skill and Kuliko's remote MCP connection to
 compatible Claude, ChatGPT, and Codex hosts.
 
 **Development preview:** package structure has been validated. End-to-end host
@@ -88,3 +88,22 @@ about how the hosted service handles your data.
 The files in this repository are licensed under the [MIT License](LICENSE).
 Use of Kuliko's hosted service is governed by its separate terms and account
 requirements.
+
+## ChatGPT study hub (KUL-279)
+
+Connect servers with `MCP_OPENAI_EXTENSIONS_ENABLED=true` add Kuliko Library,
+a conversation Study Session, entity deep links, mentions, shared study context,
+structured preferences, native pickers, and supported-file preview/import.
+These are capability-dependent OpenAI extensions; the standard tools and
+Claude widgets continue to work without them. The server flag defaults off
+until host validation is complete. Updating this package alone does not enable
+extensions on the hosted server.
+
+The OpenAI setup entry points to `skills/kuliko-setup/SKILL.md`. Shared study
+skills remain usable in Claude. A local desktop connector loads MCP tools;
+loading the skills also requires the host's plugin/skill installation workflow.
+
+The released browser SDK only supports sending messages, so Explain/Teach it
+back prepares an editable, copyable draft instead of sending without consent.
+Saved-content editors and DOCX/TIFF native previews remain follow-up work.
+See Connect's `docs/openai-extensions.md` for local connections and host checks.
