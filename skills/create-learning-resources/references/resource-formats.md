@@ -31,7 +31,16 @@ takeaways. Preserve qualifications that change the meaning. Use the requested
 level of detail and language, within the live tool's requirements.
 
 Save with `save_summaries`: `source_id`, `summaries` containing `title`,
-`overview`, `key_points`, and optional `topics_covered`, plus optional `tags`.
+`overview`, `key_points`, `pre_questions`, and optional `topics_covered`, plus
+optional `tags`. For new summaries, write 3–5 nonblank conceptual pre-questions
+answerable from the source, in the requested summary language. Present them in
+order under a localized “Before you read…” heading above the overview. They are
+reflection prompts, not scored quizzes. Preserve supplied questions and their
+order when saving existing content; older summaries may omit the field or use
+`[]`.
+
+When using `update_summary`, omission or `null` preserves pre-questions, `[]`
+clears them, and a supplied array replaces them in order.
 
 ## HTML learning artifacts
 
