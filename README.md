@@ -78,6 +78,24 @@ Keep plugin identities, versions, and endpoint declarations consistent when
 editing the platform manifests. Public files describe learning workflows and
 tool usage. Resource generation and readiness calculation run in Kuliko's service.
 
+## Package regression check
+
+Run these dependency-free checks with Python 3:
+
+```sh
+python3 scripts/check_tool_references.py
+python3 -m unittest discover -s tests -v
+```
+
+The first command rejects retired creation-tool names in public package text,
+including hidden compatibility manifests and nested skill references. The tests
+verify the guard with injected stale references. CI runs both commands. Update
+the check's public-file inventory if adding another content directory or format.
+These static checks do not verify authentication, live tool access, or saved
+results. Follow the [web/mobile creation review scenario](docs/creation-workflow-review.md)
+to capture those results separately for each client; its evidence table starts
+unverified.
+
 See [Kuliko](https://kuliko.ai) for the product and
 [repository issues](https://github.com/Kuliko-Inc/kuliko-plugin/issues) for plugin feedback.
 See Kuliko's [privacy policy](https://kuliko.ai/privacy-policy) for information

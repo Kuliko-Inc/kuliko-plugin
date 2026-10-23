@@ -150,7 +150,7 @@ recommend the route that fits the learner's request:
   level, or focus, and `lang` for the guide language. Do not draft a guide in
   chat and upload it as a substitute, or use generation to store existing text.
   This submits immediately and uses the document generation allowance.
-  If the learner wants to configure a widget, use `generate_study_document`
+  If the learner wants to configure a widget, use `open_study_guide_generator`
   when available; it only opens a form until they submit it. Resume a known
   job with its `job_id` rather than opening another generation form.
 - For either route, omit `generate_resources` unless flashcards, notes, or
