@@ -1,6 +1,6 @@
 ---
 name: teach-it-back
-description: Run a Feynman-style teach-back session grounded in Kuliko resources and the learner's quiz/review evidence. Let the learner explain, probe gaps, connect concepts to experience, and create or improve resources from what they discover. Use for requests to explain a concept in their own words or check understanding, not an unsolicited lecture or automatic quiz grading.
+description: Run a Feynman-style teach-back session grounded in Kuliko resources and the learner's quiz/review and Apply/Analyse Exercise evidence. Let the learner explain, probe gaps, connect concepts to experience, and create or improve resources from what they discover. Use for requests to explain a concept in their own words or check understanding, not an unsolicited lecture or automatic quiz grading.
 ---
 
 # Teach it back
@@ -70,6 +70,27 @@ about why this concept fits. Do not reveal the answer while gathering evidence.
 4. Ask for a revised explanation or transfer example. Compare it with the
    original gap before deciding to repeat, simplify, or move on. Keep stored
    test evidence distinct from observations made in this conversation.
+
+## Follow explanation with Apply/Analyse practice
+
+After the learner's initial explanation, offer application to a new situation
+or analysis of competing claims when it fits their request. Read the shared
+[Exercises workflow](../create-learning-resources/references/exercises.md).
+Discover/reuse with `list_exercises` and `get_exercise`; use `open_exercise` or
+the standard tools. Create missing practice with `generate_exercise` only from
+an explicit subject/document selection and at most two objectives. For a chosen
+backend skill, use `list_exercise_target_skills` and validate selected-source
+membership; actual assessed abilities come from published criterion links.
+
+The teach-back conversation is coaching, not a saved assessment. If the learner
+requests recorded submission, preserve their exact answer and declare any help
+already given. Encourage an independent answer before an explicitly requested
+hint/worked-answer reveal; never auto-reveal while gathering evidence. Use the
+backend's criterion labels, qualitative outcomes, quotes, and next step, while
+allowing defensible alternative analyses. Do not equate agreement with correctness
+or a criterion outcome with general ability. Revisions remain practice-only;
+retry unavailable assessment on the same attempt, and keep historical/unresolved
+skills explicit. A fresh exercise can provide independent confirmation.
 
 ## Turn the insight into a better Kuliko resource
 

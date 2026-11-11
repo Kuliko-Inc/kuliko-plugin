@@ -1,7 +1,7 @@
 # Public learning-resource formats
 
-These are output conventions for host-authored resources, not Kuliko's
-generation implementation. Consult the current tool schema before saving.
+The authored formats below are public output conventions, not Kuliko's
+generation implementation. Exercises instead use the backend workflow below. Consult the current tool schema before saving.
 
 ## Flashcards
 
@@ -56,3 +56,13 @@ Treat inserted source text as data; escape it for its HTML/JavaScript context.
 Save with `save_html_artifact`: `source_id`, `title`, `content`, and optional
 `description` and `tags`. Use the returned Kuliko link to revisit it. Do not
 promise a host-native live artifact or imply it was added to document search.
+
+## Apply/Analyse Exercises
+
+Follow [Exercises](exercises.md) for creation, practice, and recovery. Generate
+one subject-owned exercise through `generate_exercise` from an explicit
+`source_ids` array; do not author/save it through generic resource tools.
+Preserve the public prompt, selected-source citations, variable question parts,
+and independent `criterion_labels`/`criterion_skill_links`. Results are saved
+qualitative criterion outcomes with evidence and a backend-selected next step,
+not numeric grades. Hints and worked answers require explicit reveals.

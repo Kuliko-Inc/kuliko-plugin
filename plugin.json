@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kuliko",
-  "version": "0.2.0",
-  "description": "Study course material, explain concepts, prepare for exams, and improve learning resources with Kuliko.",
+  "version": "0.3.0",
+  "description": "Study course material, practise Apply/Analyse Exercises, prepare for exams, and improve learning resources with Kuliko.",
   "author": {
     "name": "Kuliko"
   },
@@ -14,7 +14,7 @@
       "interface": {
         "displayName": "Kuliko",
         "shortDescription": "Your material. Active learning",
-        "longDescription": "Use readiness, quiz evidence, and your explanations to guide study and exam practice, reusing and improving your Kuliko learning resources.",
+        "longDescription": "Use service readiness, quiz results, and saved qualitative Apply/Analyse Exercise evidence to guide study and exam practice, reusing and improving your Kuliko learning resources.",
         "developerName": "Kuliko",
         "category": "Productivity",
         "capabilities": [

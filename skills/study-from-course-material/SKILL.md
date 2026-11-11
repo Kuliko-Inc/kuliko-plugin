@@ -1,6 +1,6 @@
 ---
 name: study-from-course-material
-description: Help learners study lecture notes, PDFs, or saved course documents using Kuliko resources and practice results. Use for general study and for checking a confusing concept against quiz results and original material, including correcting an existing flashcard or note without duplicating it. Reuse and improve resources as gaps emerge; use exam preparation for readiness or deadlines and teach-back when the learner wants to explain first.
+description: Help learners study lecture notes, PDFs, or saved course documents using Kuliko resources, Apply/Analyse Exercises, and saved practice results. Use for general study and for checking a confusing concept against quiz results and original material, including correcting an existing flashcard or note without duplicating it. Reuse and improve resources as gaps emerge; use exam preparation for readiness or deadlines and teach-back when the learner wants to explain first.
 ---
 
 # Study from course material
@@ -44,13 +44,33 @@ explicit choices take precedence; they need not mention Kuliko to use this skill
   practice before reporting any score change; resource edits alone do not prove
   readiness improved.
 
+## Practise application or analysis
+
+For Apply/Analyse practice, read the shared [Exercises workflow](../create-learning-resources/references/exercises.md).
+Use `list_exercises` in the selected subject/source scope to find suitable saved
+practice, then `get_exercise` and `get_exercise_history`. Preserve the exercise's
+complete source selection even when found through one document. Use
+`open_exercise`, or standard tools in chat when the widget is unavailable.
+For new practice, collect the explicit subject/document selection and at most
+two objectives; use `generate_exercise`, not generic resource generation.
+Optional existing skill targets come from `list_exercise_target_skills`;
+explain assessed abilities from published criterion links, not requested IDs.
+
+Invite an independent attempt before explicit hint/worked-answer reveal.
+Submit only the learner's exact answer when requested, preserving assistance.
+Use saved qualitative results, evidence, and next step; conversational coaching
+and viewing an explanation are not recorded assessment. Keep unresolved and
+historical skills explicit. Retry an unavailable assessment on the same attempt;
+source changes instead require deliberate regeneration with the answer retained.
+Do not infer readiness gains or build recommendation policy from these outcomes.
+
 ## Work through a resource, then adapt it
 
 | Evidence or need | Study action | Useful resource improvement |
 | --- | --- | --- |
 | Missing foundation or uncertain explanation | Read a saved summary or Cornell note; ground the confusing point with `search_documents` or `get_document_text` | Create a missing summary/note, or clarify a specific existing note |
 | Recall gap or review work due | Use `review_flashcards` for the chosen source/subject; let the learner answer and rate their recall | Add a focused card for an uncovered gap, or repair an ambiguous card |
-| Can recall but struggles to apply | Use a saved quiz with `take_quiz`, or ask an application question grounded in the material | Create practice when absent; add a transfer card or worked example to a note |
+| Can recall but struggles to apply | Reuse a saved Apply Exercise; use an Analyse Exercise for relationships/claims, or a quiz for quiz-format practice | Create practice when absent; add a transfer card or worked example to a note |
 | Relationships are unclear | Use `view_mind_map` or an existing HTML explainer's returned link | Generate a missing map or save a focused interactive HTML artifact |
 
 Start with one useful action at the learner's current level. Wait for their
