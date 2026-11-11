@@ -1,6 +1,6 @@
 ---
 name: create-learning-resources
-description: Create study flashcards, Cornell notes, summaries, or interactive HTML learning artifacts from course material or text in the conversation, including a single flashcard kept only in chat with no upload or save. Use for drafting learning resources in chat, generating from a stored Kuliko source, or saving already-authored content to Kuliko; not for generic document formatting or app development.
+description: Create backend-backed Apply/Analyse Exercises, study flashcards, Cornell notes, summaries, or interactive HTML learning artifacts from course material or text in the conversation, including a single flashcard kept only in chat with no upload or save. Use for drafting learning resources in chat, generating from a stored Kuliko source, or saving already-authored content to Kuliko; not for generic document formatting or app development.
 ---
 
 # Create learning resources
@@ -8,6 +8,17 @@ description: Create study flashcards, Cornell notes, summaries, or interactive H
 Preserve the learner's requested format, scope, and language. Explicit user
 instructions take precedence over these defaults. Use live tool schemas;
 the host may prefix the tool names below with its Kuliko namespace.
+
+## Create Apply/Analyse Exercises
+
+For application or analysis practice, read [Exercises](references/exercises.md)
+and follow its creation and practice workflow. Discover/reuse with
+`list_exercises`; create with `generate_exercise` using an explicit subject and
+1–10 selected owned documents, including descendant folders, and at most two
+objectives. Preserve all 18 canonical languages and optional backend skill
+targets. Exercises have qualitative backend assessment, exact free-form answers,
+and explicit reveals; they are not a generic resource-generation type or an
+assistant-authored saved quiz. If tools are missing, label chat practice unsaved.
 
 ## Choose generation or authoring
 
@@ -24,8 +35,8 @@ the host may prefix the tool names below with its Kuliko namespace.
 - HTML artifacts are authored content: use `save_html_artifact`, not
   `generate_learning_resources`. A Kuliko artifact is a stored HTML learning
   resource, independent of any host's native artifact feature.
-- Every save needs an actual `source_id`; source-scoped tools resolve its
-  current subject automatically. Use the source workflow below when no source
+- Every authored-resource save below needs an actual `source_id`; source-scoped
+  tools resolve its current subject automatically. Use the source workflow below when no source
   exists. Never serialize finished cards, notes, summaries, or HTML into a
   dummy source document to bypass the structured save tools.
 
@@ -62,8 +73,8 @@ text. Respect chat-only requests; using this skill does not authorize saving.
 
 ## Finish the requested action
 
-Follow the source and job workflow below for queued work. Structured saves
-return a created `resource` with IDs, title, and `consume_url`; do not poll
+For non-Exercise resources, follow the source and job workflow below for queued
+work. Structured saves return a created `resource` with IDs, title, and `consume_url`; do not poll
 a synchronous save unless a job handle is actually returned.
 
 Present the saved title and returned consume link. Retrieve generated content

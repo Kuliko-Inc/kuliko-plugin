@@ -14,7 +14,7 @@ Directory availability depends on submission and review.
 | --- | --- |
 | `study-from-course-material` | Help me understand my lecture notes and improve my study resources. |
 | `teach-it-back` | Let me explain this concept; challenge gaps in my understanding. |
-| `create-learning-resources` | Make flashcards from my notes, or save these finished Cornell notes. |
+| `create-learning-resources` | Create an Analyse Exercise from these two selected documents, or save these Cornell notes. |
 | `prepare-for-an-exam` | My biology exam is Friday. What should I practice based on my results? |
 
 Study sessions use the readiness and practice evidence returned by Kuliko,
@@ -22,6 +22,23 @@ plus your answers, to choose useful activities. They reuse existing resources,
 create missing ones, and improve content within your requested scope. Other
 available connectors can supply relevant course material, supporting explanations,
 or scheduling context; Kuliko remains the home for your learning resources.
+
+## Apply/Analyse Exercises
+
+When the connected tools are available, create one coherent exercise from an
+explicit selection of 1–10 owned documents in a subject or its folders, with up
+to two objectives. Practise Apply or Analyse in any of the 18 supported learning
+languages. Saved results contain qualitative criterion feedback, evidence, and
+a next step. Skills encourage an independent answer before an explicit hint or
+worked-answer reveal; revisions remain practice-only. Conversational coaching
+and explanation viewing do not become saved assessments or readiness updates.
+
+The [shared workflow](skills/create-learning-resources/references/exercises.md)
+covers standard-tool and widget use, historical/unresolved skills, same-attempt
+assessment recovery, and deliberate regeneration after source changes. Tool
+availability and worker enablement depend on the connected deployment.
+See the [KUL-453 validation record](docs/exercises-validation.md) for tested
+contracts and the remaining live-host matrix.
 
 ## Try it in Claude Code
 
@@ -35,8 +52,14 @@ claude --plugin-dir .
 Authenticate the Kuliko MCP connection when prompted. Ask a natural study
 question or invoke `/kuliko:teach-it-back`.
 
-For a personal Claude skill upload, ZIP one folder from `skills/`, preserving
-its folder name, `SKILL.md`, and referenced supporting files. Follow
+For a personal Claude skill upload, prepare a separate export copy of the chosen
+folder from `skills/`, preserving its folder name, `SKILL.md`, and supporting
+files. The study, teach-back, and exam skills share the Exercises reference:
+copy `skills/create-learning-resources/references/exercises.md` into the exported
+skill's `references/` folder and change its link from
+`../create-learning-resources/references/exercises.md` to `references/exercises.md`.
+ZIP that complete exported folder; zipping those three source folders alone
+omits required guidance. The full plugin already includes the shared reference. Follow
 [Claude's custom skill upload instructions](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
 Check the current upload metadata limits; a standalone upload may require a
 shorter description than the plugin skill. Connect Kuliko separately when
@@ -80,16 +103,22 @@ tool usage. Resource generation and readiness calculation run in Kuliko's servic
 
 ## Package regression check
 
-Run these dependency-free checks with Python 3:
+Run these checks with Python 3.12+ in a virtual environment:
 
 ```sh
+python3 -m pip install PyYAML==6.0.3
 python3 scripts/check_tool_references.py
+python3 scripts/check_exercise_contract.py
 python3 -m unittest discover -s tests -v
 ```
 
-The first command rejects retired creation-tool names in public package text,
+The tool-reference check rejects retired creation-tool names in public package text,
 including hidden compatibility manifests and nested skill references. The tests
-verify the guard with injected stale references. CI runs both commands. Update
+verify the guards with injected stale references, invalid metadata, and contract
+changes. CI runs all three checks. The exercise checker validates the package's
+tool input table against a pinned source snapshot; add
+`--connect-repo /path/to/kuliko-connect` after fetching that repository to compare
+against its `origin/main` without importing or changing its working tree. Update
 the check's public-file inventory if adding another content directory or format.
 These static checks do not verify authentication, live tool access, or saved
 results. Follow the [web/mobile creation review scenario](docs/creation-workflow-review.md)

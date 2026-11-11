@@ -5,6 +5,6 @@ dependencies:
   tools:
     - type: "mcp"
       value: "kuliko"
-      description: "Read course material and save learning resources in Kuliko."
+      description: "Read course material, create Exercises, and use saved qualitative assessments."
       transport: "streamable_http"
       url: "https://mcp.kuliko.ai/mcp"

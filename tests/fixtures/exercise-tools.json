@@ -1,0 +1,254 @@
+{
+  "connect_commit": "0be267bd5171c268fbb987095c233eaa88d4753d",
+  "tools": {
+    "generate_exercise": {
+      "required": [
+        "subject_id",
+        "source_ids",
+        "mode",
+        "difficulty",
+        "language",
+        "idempotency_key"
+      ],
+      "optional": [
+        "objectives",
+        "skill_ids"
+      ],
+      "annotations": {
+        "subject_id": "SubjectId",
+        "source_ids": "SourceSelection",
+        "mode": "ExerciseMode",
+        "difficulty": "ExerciseDifficulty",
+        "language": "LearningResourceLanguage",
+        "idempotency_key": "Nonblank",
+        "objectives": "Annotated[list[Objective], Field(max_length=2)] | None",
+        "skill_ids": "list[KulikoId] | None"
+      }
+    },
+    "get_exercise_generation": {
+      "required": [
+        "generation_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "generation_id": "KulikoId"
+      }
+    },
+    "list_exercises": {
+      "required": [],
+      "optional": [
+        "subject_id",
+        "source_id",
+        "limit",
+        "offset"
+      ],
+      "annotations": {
+        "subject_id": "SubjectId | None",
+        "source_id": "KulikoId | None",
+        "limit": "Limit",
+        "offset": "Offset"
+      }
+    },
+    "get_exercise": {
+      "required": [
+        "exercise_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "exercise_id": "KulikoId"
+      }
+    },
+    "get_exercise_draft": {
+      "required": [
+        "exercise_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "exercise_id": "KulikoId"
+      }
+    },
+    "save_exercise_draft": {
+      "required": [
+        "exercise_id",
+        "content_version",
+        "expected_version",
+        "answer"
+      ],
+      "optional": [],
+      "annotations": {
+        "exercise_id": "KulikoId",
+        "content_version": "Version",
+        "expected_version": "DraftVersion",
+        "answer": "str"
+      }
+    },
+    "delete_exercise_draft": {
+      "required": [
+        "exercise_id",
+        "expected_version"
+      ],
+      "optional": [],
+      "annotations": {
+        "exercise_id": "KulikoId",
+        "expected_version": "DraftVersion"
+      }
+    },
+    "submit_exercise_answer": {
+      "required": [
+        "exercise_id",
+        "idempotency_key",
+        "content_version",
+        "draft_version",
+        "answer"
+      ],
+      "optional": [
+        "assistance"
+      ],
+      "annotations": {
+        "exercise_id": "KulikoId",
+        "idempotency_key": "Nonblank",
+        "content_version": "Version",
+        "draft_version": "DraftVersion",
+        "answer": "Nonblank",
+        "assistance": "list[Nonblank] | None"
+      }
+    },
+    "get_exercise_history": {
+      "required": [
+        "exercise_id"
+      ],
+      "optional": [
+        "limit",
+        "offset"
+      ],
+      "annotations": {
+        "exercise_id": "KulikoId",
+        "limit": "Limit",
+        "offset": "Offset"
+      }
+    },
+    "get_exercise_attempt": {
+      "required": [
+        "attempt_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "attempt_id": "KulikoId"
+      }
+    },
+    "get_exercise_results": {
+      "required": [
+        "attempt_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "attempt_id": "KulikoId"
+      }
+    },
+    "get_exercise_skill_evidence": {
+      "required": [
+        "attempt_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "attempt_id": "KulikoId"
+      }
+    },
+    "retry_exercise_assessment": {
+      "required": [
+        "attempt_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "attempt_id": "KulikoId"
+      }
+    },
+    "reveal_exercise": {
+      "required": [
+        "exercise_id",
+        "idempotency_key",
+        "content_version",
+        "kind"
+      ],
+      "optional": [],
+      "annotations": {
+        "exercise_id": "KulikoId",
+        "idempotency_key": "Nonblank",
+        "content_version": "Version",
+        "kind": "RevealKind"
+      }
+    },
+    "report_exercise_feedback": {
+      "required": [
+        "attempt_id",
+        "idempotency_key",
+        "result_version",
+        "reason"
+      ],
+      "optional": [],
+      "annotations": {
+        "attempt_id": "KulikoId",
+        "idempotency_key": "Nonblank",
+        "result_version": "Version",
+        "reason": "Nonblank"
+      }
+    },
+    "archive_exercise": {
+      "required": [
+        "exercise_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "exercise_id": "KulikoId"
+      }
+    },
+    "list_exercise_target_skills": {
+      "required": [
+        "subject_id"
+      ],
+      "optional": [
+        "limit",
+        "offset"
+      ],
+      "annotations": {
+        "subject_id": "SubjectId",
+        "limit": "Limit",
+        "offset": "Offset"
+      }
+    },
+    "open_exercise": {
+      "required": [
+        "exercise_id"
+      ],
+      "optional": [],
+      "annotations": {
+        "exercise_id": "KulikoId"
+      }
+    }
+  },
+  "constraints": {
+    "app/mcp/tools/exercises.py": {
+      "_nonblank": "def _nonblank(value: str) -> str:\n    if not value.strip():\n        raise ValueError('A nonblank value is required')\n    return value",
+      "_objective": "def _objective(value: str) -> str:\n    _nonblank(value)\n    if len(value.encode('utf-8')) > 2000:\n        raise ValueError('Each objective must be at most 2000 UTF-8 bytes')\n    return value",
+      "_sources": "def _sources(value: list[str]) -> list[str]:\n    if len(set(value)) > 10:\n        raise ValueError('Select at most 10 unique documents; no documents were dropped')\n    return value",
+      "Nonblank": "Nonblank = Annotated[str, AfterValidator(_nonblank), Field(min_length=1)]",
+      "Objective": "Objective = Annotated[str, AfterValidator(_objective), Field(min_length=1, max_length=2000)]",
+      "SourceSelection": "SourceSelection = Annotated[list[Nonblank], AfterValidator(_sources), Field(min_length=1, description='Explicitly selected owned documents in the subject or its folders. Maximum 10 unique documents and 160000 aggregate source UTF-8 bytes (validated by API). Never silently select or drop documents. Duplicates/reordering preserve the backend generation identity.')]",
+      "Version": "Version = Annotated[int, Field(ge=1)]",
+      "DraftVersion": "DraftVersion = Annotated[int, Field(ge=0)]",
+      "Limit": "Limit = Annotated[int, Field(ge=1, le=100)]",
+      "Offset": "Offset = Annotated[int, Field(ge=0)]"
+    },
+    "app/mcp/exercise_types.py": {
+      "ExerciseMode": "ExerciseMode = Literal['apply', 'analyse']",
+      "ExerciseDifficulty": "ExerciseDifficulty = Literal['introductory', 'intermediate', 'advanced']",
+      "AssessmentState": "AssessmentState = Literal['pending', 'processing', 'complete', 'unavailable']",
+      "CriterionStatus": "CriterionStatus = Literal['not_yet_demonstrated', 'partly_demonstrated', 'demonstrated']",
+      "RevealKind": "RevealKind = Literal['hint', 'worked_answer']",
+      "ExerciseEvidenceLinkState": "ExerciseEvidenceLinkState = Literal['current', 'historical']"
+    },
+    "app/mcp/tool_types.py": {
+      "LearningResourceLanguage": "LearningResourceLanguage = Literal['english', 'french', 'spanish', 'german', 'italian', 'portuguese', 'dutch', 'polish', 'chinese', 'japanese', 'korean', 'arabic', 'hindi', 'russian', 'ukrainian', 'turkish', 'indonesian', 'vietnamese']"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 ---
 name: prepare-for-an-exam
-description: Report Kuliko readiness for a saved document or course and choose what to study next, including read-only score requests. Use when the learner asks for a readiness score, whether they are ready for an exam, what to study before a test, or an exam-preparation plan. Ground priorities and practice in Kuliko's scoped scores, quiz evidence, and existing resources; create or update resources only within the requested scope.
+description: Report Kuliko readiness for a saved document or course and choose what to study next, including read-only score requests. Use when the learner asks for a readiness score, whether they are ready for an exam, what to study before a test, or an exam-preparation plan. Ground priorities and practice in Kuliko's scoped scores, quiz and qualitative Apply/Analyse Exercise evidence, and existing resources; create or update resources only within the requested scope.
 ---
 
 # Prepare for an exam
@@ -87,6 +87,31 @@ readiness score. If neither a score nor relevant evidence exists, readiness is
 unknown. For a new learner, start with a few brief diagnostic
 questions or a suitable existing quiz, and update the table from actual answers.
 
+## Include saved Apply/Analyse evidence
+
+For exams requiring application or analysis, read the shared
+[Exercises workflow](../create-learning-resources/references/exercises.md).
+Use scoped `list_exercises`, `get_exercise_history`, `get_exercise_results`, and
+`get_exercise_skill_evidence` when available. Match the full selected sources
+and backend-validated criterion links to the exam scope; requested skill targets
+alone do not establish coverage. Report public labels, saved qualitative
+outcomes, evidence, and selected next step. Keep unassessed, unresolved, and
+historical skills explicit; count distinct attempts across documents once.
+
+Reuse suitable practice with `open_exercise` or standard tools. If creating is
+in scope, use `generate_exercise` with the explicit subject/document selection,
+at most two objectives, and the learner's mode/language. Encourage independent
+attempts before explicit reveals. Submit only the learner's exact answer when
+requested and preserve assistance; revisions are practice-only. An unavailable
+first assessment is unknown: retry that saved attempt, not a new submission.
+Retain the answer on source conflicts and offer deliberate regeneration.
+
+Keep service readiness and qualitative exercise evidence separate. Do not turn
+criteria into numeric grades, exam-pass predictions, readiness weighting, or an
+automated recommendation policy. A viewed explanation or conversational answer
+is not recorded assessment. Read-only readiness requests do not authorize
+creation, submission, reveals, or other writes.
+
 ## Prioritize and start practicing
 
 Use the available time and known exam coverage to focus on weak prerequisites
@@ -97,7 +122,7 @@ plain language, without exposing or inventing a proprietary scoring formula.
 | --- | --- |
 | Conceptual gap | Use an existing summary/Cornell note, then ask the learner to explain a cue without looking |
 | Recall gap | Review the selected subject/source with `review_flashcards`; let the learner answer and rate |
-| Application or exam-format gap | Take/resume a suitable saved quiz with `take_quiz`, then use completed results to target the next activity |
+| Application or exam-format gap | Reuse an Apply/Analyse Exercise for free-form practice, or take/resume a quiz with `take_quiz` for quiz-format practice |
 | Connections are unclear | Use `view_mind_map` or a saved interactive explainer, then ask a transfer question |
 | Limited time | Pick a small useful set of topics/resources and begin the first activity; do not generate a whole course library |
 
@@ -129,9 +154,9 @@ Do not delete and regenerate collections to repair individual gaps.
 
 After the learner completes an activity, inspect available actual results or
 listen to their explanation. Adjust the next topic and challenge accordingly;
-a widget launch is not completion. Never submit answers/ratings for them or
-claim conversation feedback changed their saved mastery state. Refresh the
-selected subject/document after completed practice before reporting a readiness
+a widget launch is not completion. Never author answers or choose ratings for
+them; submit their exact Exercise answer only when requested. Do not claim
+conversation feedback changed their saved mastery state. Refresh the selected subject/document after completed practice before reporting a readiness
 change; generating or editing learning resources alone does not prove improvement.
 
 Keep supporting connector material attributed and distinguish it from assessed
