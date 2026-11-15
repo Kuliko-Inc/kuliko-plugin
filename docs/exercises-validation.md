@@ -41,21 +41,12 @@ draft conflicts/tombstones, unavailable recovery, provenance, and skill evidence
 They do not execute the plugin prompts in a host or establish real grading,
 source ownership enforcement, quota accounting, or rendering.
 
-Reproduce package checks in a Python 3.12+ virtual environment:
-
-```sh
-python3 -m pip install PyYAML==6.0.3
-python3 scripts/check_tool_references.py
-python3 scripts/check_exercise_contract.py
-python3 scripts/check_exercise_contract.py --connect-repo /path/to/kuliko-connect
-python3 -m unittest discover -s tests -v
-git diff --check
-claude plugin validate .
-```
-
-The optional Connect comparison reads `origin/main`; fetch it first. The pinned
-fixture is an auditable source snapshot, not a live-tool availability assertion.
-CI runs the package checks without requiring a second repository checkout.
+The results above are historical evidence for v0.3.0. The Python checkers,
+tests, fixture, and CI workflow were subsequently removed to keep the repository
+root eligible for Claude directory submission by an unverified organization.
+To reproduce those historical checks, use commit `6db5fb0`. For the current package,
+run `claude plugin validate .` and `git diff --check`; directory policy review and
+live-host validation remain separate.
 
 ## Live availability and remaining host validation
 

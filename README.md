@@ -94,36 +94,29 @@ creating calendar events.
 - `plugin.json` and `mcp.json`: portable plugin identity and MCP configuration.
 - `.claude-plugin/plugin.json` and `.mcp.json`: Claude compatibility configuration.
 - `.codex-plugin/plugin.json`: OpenAI compatibility metadata.
-- `assets/icon.svg`: Kuliko icon used by the Claude plugin listing.
+- `assets/icon.png`: Kuliko icon used by the Claude plugin listing.
 - `skills/*/agents/openai.yaml`: OpenAI skill metadata and MCP dependencies.
 
 Keep plugin identities, versions, and endpoint declarations consistent when
 editing the platform manifests. Public files describe learning workflows and
 tool usage. Resource generation and readiness calculation run in Kuliko's service.
 
-## Package regression check
+## Package validation
 
-Run these checks with Python 3.12+ in a virtual environment:
+The repository root is the Claude plugin folder. Keep submitted files within
+Claude's allowed formats; use PNG for the listing icon and keep executable
+scripts and tests outside this repository.
+
+Run the host's local package checks before submitting:
 
 ```sh
-python3 -m pip install PyYAML==6.0.3
-python3 scripts/check_tool_references.py
-python3 scripts/check_exercise_contract.py
-python3 -m unittest discover -s tests -v
+claude plugin validate .
 ```
 
-The tool-reference check rejects retired creation-tool names in public package text,
-including hidden compatibility manifests and nested skill references. The tests
-verify the guards with injected stale references, invalid metadata, and contract
-changes. CI runs all three checks. The exercise checker validates the package's
-tool input table against a pinned source snapshot; add
-`--connect-repo /path/to/kuliko-connect` after fetching that repository to compare
-against its `origin/main` without importing or changing its working tree. Update
-the check's public-file inventory if adding another content directory or format.
-These static checks do not verify authentication, live tool access, or saved
-results. Follow the [web/mobile creation review scenario](docs/creation-workflow-review.md)
-to capture those results separately for each client; its evidence table starts
-unverified.
+These checks do not replace the directory's policy review or verify authentication,
+live tool access, or saved results. Follow the
+[web/mobile creation review scenario](docs/creation-workflow-review.md) to capture
+those results separately for each client; its evidence table starts unverified.
 
 See [Kuliko](https://kuliko.ai) for the product and
 [repository issues](https://github.com/Kuliko-Inc/kuliko-plugin/issues) for plugin feedback.
