@@ -32,9 +32,9 @@ Ground the concept with `search_documents` or `get_document_text` as needed.
 For a requested tag, inspect returned document metadata; do not invent a tag
 filter parameter or assume semantic search is exact tag matching.
 
-Use the selected subject/document's returned `readiness` as Kuliko's score out
+Use the selected subject/document's returned `exam_readiness` as Kuliko's score out
 of 100; refresh a source with `get_document` when needed. Respect its scope:
-a course score is not the score of every concept. Read available `recall_forecast`,
+a course score is not the score of every concept. Read available `current_recall`,
 `quiz_confidence`, `mastery_level`, `reviewed_flashcards_count`, `flashcards_count`,
 and `completed_quizzes_count` as supporting context. Preserve numeric zero;
 null or missing means unavailable. Never reconstruct the score or publish its
@@ -203,3 +203,29 @@ its selected resource context rather than opening duplicate views. Selection
 alone does not authorize writes or practice. On other hosts, continue using
 the standard Kuliko tools and existing widgets; ChatGPT-specific navigation,
 mentions, settings, and file handlers are not required. Use live tool schemas.
+
+## Readiness and current recall contract
+
+Display the newer `exam_readiness` metric as **Readiness**, never as
+“Exam readiness” or an API field name. The field name is a transport detail;
+do not rename or substitute the legacy `readiness` field.
+
+Only finalized submitted, left, or timed-out Exams contribute to
+`exam_readiness` (0–100); unanswered questions count wrong. Practice quiz ratings,
+`performance_percentage`, `mastery_level`, and `quiz_confidence` are separate
+practice feedback and do not change Readiness. Exam eligibility gates and
+`readiness_eligible` flags are not numeric Readiness.
+
+Display `current_recall` (0–1) as a percentage labeled **Current recall**, with the
+hint “Estimated chance of recalling your flashcards now.” It averages individual
+cards in the scope: reviewed cards use personalized FSRS decay and elapsed whole
+days since last review; unreviewed cards or cards without positive stability
+contribute zero; no cards returns null. Use the returned scope value; never
+average child averages or calculate a projection locally.
+
+For displays, sorting, and recommendations use only `exam_readiness` and
+`current_recall`. Null or missing means unavailable, never zero or a fallback to
+legacy `readiness` or `recall_forecast`. Those deprecated compatibility fields
+remain distinct for older installed hosts/skills. Use source values for a source,
+direct subject values for direct membership, and `subtree_stats` for a whole
+subject including descendants; never combine overlapping scopes.
