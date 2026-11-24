@@ -44,7 +44,7 @@ assistant-authored saved quiz. If tools are missing, label chat practice unsaved
 
 Read only the relevant section of [resource-formats.md](references/resource-formats.md)
 when authoring content. The live schema is authoritative for fields and limits.
-Use Kuliko's returned subject/document `readiness` and its supporting evidence,
+Use Kuliko's returned subject/document `exam_readiness` and its supporting evidence,
 relevant quiz results, current answers, or stated confidence already available
 to choose useful difficulty and focus. Preserve the service's score and scope;
 null/missing is unavailable, and zero is valid. Do not reconstruct the score or
@@ -146,3 +146,29 @@ its selected resource context rather than opening duplicate views. Selection
 alone does not authorize writes or practice. On other hosts, continue using
 the standard Kuliko tools and existing widgets; ChatGPT-specific navigation,
 mentions, settings, and file handlers are not required. Use live tool schemas.
+
+## Readiness and current recall contract
+
+Display the newer `exam_readiness` metric as **Readiness**, never as
+“Exam readiness” or an API field name. The field name is a transport detail;
+do not rename or substitute the legacy `readiness` field.
+
+Only finalized submitted, left, or timed-out Exams contribute to
+`exam_readiness` (0–100); unanswered questions count wrong. Practice quiz ratings,
+`performance_percentage`, `mastery_level`, and `quiz_confidence` are separate
+practice feedback and do not change Readiness. Exam eligibility gates and
+`readiness_eligible` flags are not numeric Readiness.
+
+Display `current_recall` (0–1) as a percentage labeled **Current recall**, with the
+hint “Estimated chance of recalling your flashcards now.” It averages individual
+cards in the scope: reviewed cards use personalized FSRS decay and elapsed whole
+days since last review; unreviewed cards or cards without positive stability
+contribute zero; no cards returns null. Use the returned scope value; never
+average child averages or calculate a projection locally.
+
+For displays, sorting, and recommendations use only `exam_readiness` and
+`current_recall`. Null or missing means unavailable, never zero or a fallback to
+legacy `readiness` or `recall_forecast`. Those deprecated compatibility fields
+remain distinct for older installed hosts/skills. Use source values for a source,
+direct subject values for direct membership, and `subtree_stats` for a whole
+subject including descendants; never combine overlapping scopes.

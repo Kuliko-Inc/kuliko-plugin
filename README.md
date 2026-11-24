@@ -17,6 +17,10 @@ Directory availability depends on submission and review.
 | `create-learning-resources` | Create an Analyse Exercise from these two selected documents, or save these Cornell notes. |
 | `prepare-for-an-exam` | My biology exam is Friday. What should I practice based on my results? |
 
+The user-facing label **Readiness** uses the newer `exam_readiness` API field;
+**Current recall** uses `current_recall`. Missing values remain unavailable,
+without falling back to legacy `readiness` or `recall_forecast`.
+
 Study sessions use the readiness and practice evidence returned by Kuliko,
 plus your answers, to choose useful activities. They reuse existing resources,
 create missing ones, and improve content within your requested scope. Other

@@ -42,7 +42,7 @@ Never create a placeholder source merely so resource saves will accept an ID.
 
 ## Assess readiness with evidence
 
-Read the selected subjects/documents' `readiness` values from `list_subjects`,
+Read the selected subjects/documents' `exam_readiness` values from `list_subjects`,
 `list_documents`, or `get_document`. These are Kuliko's scores out of 100;
 report the service value and its subject/source scope. Do not average scores
 into a fabricated exam-readiness percentage or treat one source as full syllabus
@@ -51,10 +51,10 @@ Do not dismiss a returned zero as a placeholder because supporting fields look
 similar to another record or seem stronger. Report the requested source's score
 even when its subject has only that source; the subject score cannot replace it.
 
-Use returned `recall_forecast`, `quiz_confidence`, `mastery_level`,
+Use returned `current_recall`, `quiz_confidence`, `mastery_level`,
 `reviewed_flashcards_count`, `flashcards_count`, and `completed_quizzes_count`
-to describe supporting evidence and coverage. `recall_forecast` is a 0–1 forecast
-for 30-day recall, not an exam-pass probability. Keep the score calculation in
+to describe supporting evidence and coverage. `current_recall` is a 0–1 estimate
+of recalling flashcards now, not an exam-pass probability. Keep the score calculation in
 Kuliko; the skill consumes these public fields without reproducing the formula.
 
 Inspect relevant `list_learning_resources` and, when useful, `list_html_artifacts`.
@@ -156,8 +156,8 @@ After the learner completes an activity, inspect available actual results or
 listen to their explanation. Adjust the next topic and challenge accordingly;
 a widget launch is not completion. Never author answers or choose ratings for
 them; submit their exact Exercise answer only when requested. Do not claim
-conversation feedback changed their saved mastery state. Refresh the selected subject/document after completed practice before reporting a readiness
-change; generating or editing learning resources alone does not prove improvement.
+conversation feedback changed their saved mastery state. Refresh the selected subject/document after a finalized Exam before reporting a Readiness
+change; later practice does not change Readiness, and generating or editing learning resources alone does not prove improvement.
 
 Keep supporting connector material attributed and distinguish it from assessed
 course coverage. Bring useful explanations back into source-linked Kuliko
@@ -237,3 +237,29 @@ its selected resource context rather than opening duplicate views. Selection
 alone does not authorize writes or practice. On other hosts, continue using
 the standard Kuliko tools and existing widgets; ChatGPT-specific navigation,
 mentions, settings, and file handlers are not required. Use live tool schemas.
+
+## Readiness and current recall contract
+
+Display the newer `exam_readiness` metric as **Readiness**, never as
+“Exam readiness” or an API field name. The field name is a transport detail;
+do not rename or substitute the legacy `readiness` field.
+
+Only finalized submitted, left, or timed-out Exams contribute to
+`exam_readiness` (0–100); unanswered questions count wrong. Practice quiz ratings,
+`performance_percentage`, `mastery_level`, and `quiz_confidence` are separate
+practice feedback and do not change Readiness. Exam eligibility gates and
+`readiness_eligible` flags are not numeric Readiness.
+
+Display `current_recall` (0–1) as a percentage labeled **Current recall**, with the
+hint “Estimated chance of recalling your flashcards now.” It averages individual
+cards in the scope: reviewed cards use personalized FSRS decay and elapsed whole
+days since last review; unreviewed cards or cards without positive stability
+contribute zero; no cards returns null. Use the returned scope value; never
+average child averages or calculate a projection locally.
+
+For displays, sorting, and recommendations use only `exam_readiness` and
+`current_recall`. Null or missing means unavailable, never zero or a fallback to
+legacy `readiness` or `recall_forecast`. Those deprecated compatibility fields
+remain distinct for older installed hosts/skills. Use source values for a source,
+direct subject values for direct membership, and `subtree_stats` for a whole
+subject including descendants; never combine overlapping scopes.

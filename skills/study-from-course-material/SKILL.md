@@ -15,11 +15,11 @@ explicit choices take precedence; they need not mention Kuliko to use this skill
   and `list_documents`. Ask only about ambiguous matches or missing scope.
   Inspect relevant existing content with `list_learning_resources`; use
   `list_html_artifacts` when a saved visual explainer could help.
-- Read Kuliko's returned `readiness` on the selected subject/document first;
+- Read Kuliko's returned `exam_readiness` on the selected subject/document first;
   `get_document` can refresh one source. This is the service's score out of 100,
   not a value to reconstruct. Prefer document readiness for that document and
   subject readiness for course-wide context; do not average them into a new score.
-  Use returned `recall_forecast`, `quiz_confidence`, `mastery_level`,
+  Use returned `current_recall`, `quiz_confidence`, `mastery_level`,
   `reviewed_flashcards_count`, `flashcards_count`, and `completed_quizzes_count`
   to explain available evidence and coverage. A null/missing readiness is
   unavailable; numeric zero is a real score. Do not copy or infer its formula.
@@ -40,8 +40,8 @@ explicit choices take precedence; they need not mention Kuliko to use this skill
   If the service score and relevant evidence are absent, say readiness is unknown
   and begin with a short recall or explanation question. Missing quiz history
   alone does not invalidate an available service score. Do not hold up the
-  session for a full assessment. Refresh subject/document data after actual
-  practice before reporting any score change; resource edits alone do not prove
+  session for a full assessment. Refresh subject/document data after
+  a finalized Exam before reporting a Readiness change; practice and resource edits do not prove
   readiness improved.
 
 ## Practise application or analysis
@@ -189,3 +189,29 @@ its selected resource context rather than opening duplicate views. Selection
 alone does not authorize writes or practice. On other hosts, continue using
 the standard Kuliko tools and existing widgets; ChatGPT-specific navigation,
 mentions, settings, and file handlers are not required. Use live tool schemas.
+
+## Readiness and current recall contract
+
+Display the newer `exam_readiness` metric as **Readiness**, never as
+“Exam readiness” or an API field name. The field name is a transport detail;
+do not rename or substitute the legacy `readiness` field.
+
+Only finalized submitted, left, or timed-out Exams contribute to
+`exam_readiness` (0–100); unanswered questions count wrong. Practice quiz ratings,
+`performance_percentage`, `mastery_level`, and `quiz_confidence` are separate
+practice feedback and do not change Readiness. Exam eligibility gates and
+`readiness_eligible` flags are not numeric Readiness.
+
+Display `current_recall` (0–1) as a percentage labeled **Current recall**, with the
+hint “Estimated chance of recalling your flashcards now.” It averages individual
+cards in the scope: reviewed cards use personalized FSRS decay and elapsed whole
+days since last review; unreviewed cards or cards without positive stability
+contribute zero; no cards returns null. Use the returned scope value; never
+average child averages or calculate a projection locally.
+
+For displays, sorting, and recommendations use only `exam_readiness` and
+`current_recall`. Null or missing means unavailable, never zero or a fallback to
+legacy `readiness` or `recall_forecast`. Those deprecated compatibility fields
+remain distinct for older installed hosts/skills. Use source values for a source,
+direct subject values for direct membership, and `subtree_stats` for a whole
+subject including descendants; never combine overlapping scopes.
