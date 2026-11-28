@@ -5,10 +5,33 @@ generation implementation. Exercises instead use the backend workflow below. Con
 
 ## Flashcards
 
-Use a clear, standalone question that requires recall and a concise, complete
-answer. Focus each card on one assessable idea; split questions that demand
-several unrelated answers. Include enough context to distinguish similar
-concepts. Prefer useful understanding and application over ambiguous trivia.
+Create cards for recalling essential knowledge taught in the material:
+core definitions, facts, principles, formulas, relationships, distinctions,
+and process steps. Use learning objectives and the material's emphasis to
+select what matters. Skip incidental details and redundant examples; cover
+the essential knowledge without targeting a fixed count or exhaustive detail.
+
+Each card asks for one specific answer from memory. Keep questions clear and
+self-contained, with enough context to distinguish similar concepts without
+giving away the answer. Keep answers short: ideally a word, phrase, or one
+sentence. Split essential recall targets rather than combining them into a
+list or multi-part question. Avoid yes/no, true/false, and multiple-choice
+questions. Create reverse-direction cards only when each direction serves a
+distinct, essential recall need.
+
+"Why", "how", and comparison questions can recall an explanation or distinction
+explicitly taught in the material. Do not ask learners to apply knowledge to a
+new situation, calculate a result, diagnose a case, or predict a hypothetical
+outcome; quizzes and exercises provide application practice. For a formula or
+procedure, ask for the formula, a symbol's meaning, or an individual step.
+
+For example, ask "What gradient drives ATP synthase in mitochondria?" with the
+answer "A proton gradient across the inner mitochondrial membrane." Avoid
+asking what would happen to ATP production if that membrane became leaky.
+
+These are defaults for assistant-authored cards. Preserve complete cards
+supplied by the learner and honor explicit customization requests, as described
+in the parent skill.
 
 Save with `save_flashcards`: `source_id`, `flashcards` containing `question`
 and `answer`, and optional `tags`. Do not invent resource IDs or include fields
